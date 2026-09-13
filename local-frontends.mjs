@@ -3,7 +3,7 @@ import path from 'node:path';
 import { createRequire } from 'node:module';
 
 for (const [name, source, port, apiPort] of [
-  ['loage', '../loage', 5173, 3001],
+  ['cieve', '../cieve', 5173, 3001],
   ['studio', '../ninetyfourohfive/frontend', 3000, 8000],
 ]) {
   const root = path.resolve(source);

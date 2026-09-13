@@ -3,11 +3,11 @@ const path = require('node:path');
 const readline = require('node:readline/promises');
 
 // Open the real apps, let the owner sign in, then capture the chosen screens.
-// Usage: node capture-projects.cjs <playwright-path> <loage-url> <studio-url>
+// Usage: node capture-projects.cjs <playwright-path> <cieve-url> <studio-url>
 (async () => {
   const urls = process.argv.slice(3);
   if (urls.length !== 2 || urls.some(url => !/^https?:\/\//.test(url))) {
-    throw new Error('Provide the HTTP(S) URLs for Loage and the content studio.');
+    throw new Error('Provide the HTTP(S) URLs for Cieve and the content studio.');
   }
   const context = await chromium.launchPersistentContext(path.join(__dirname, '.capture-profile'), {
     headless: false,
@@ -27,7 +27,7 @@ const readline = require('node:readline/promises');
     await input.question('Sign in and select the desired screen in both tabs. Press Enter only when both screens are ready to capture.\n');
     for (const [index, page] of pages.entries()) {
       await page.evaluate(() => document.fonts.ready);
-      const filename = index === 0 ? 'loage-screenshot.png' : 'studio-screenshot.png';
+      const filename = index === 0 ? 'cieve-screenshot.png' : 'studio-screenshot.png';
       await page.screenshot({ path: path.join(__dirname, 'assets', filename), animations: 'disabled' });
       console.log(`Captured ${filename}`);
     }
